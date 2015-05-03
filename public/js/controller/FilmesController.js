@@ -12,12 +12,26 @@ function FilmesController($http, $scope) {
 
   $scope.filme = new Filme();
 
-  $scope.adicionaFilme = function () {
+  var adicionaFilme = function () {
     $http.post('/grava', $scope.filme)
       .success(function (retorno) {
         $scope.filmes.push(retorno);
         $scope.filme = new Filme();
     });
+  };
+
+  var atualizaFilme = function () {
+    $http.put('/filme', $scope.filme).success(function () {
+      $scope.filme = new Filme();
+    });
+  };
+
+  $scope.enviaFilme = function () {
+    if ($scope.filme._id) {
+      atualizaFilme();
+    } else {
+      adicionaFilme();
+    }
   };
 
   $scope.mostraFilme = function (filme) {
@@ -30,5 +44,9 @@ function FilmesController($http, $scope) {
       var index = $scope.filmes.indexOf(filme);
       $scope.filmes.splice(index, 1);
     });
+  };
+
+  $scope.editaFilme = function (filme) {
+    $scope.filme = filme;
   };
 }

@@ -23,11 +23,18 @@
           <dt>Ano:</dt>
           <td>{{ filmeSelecionado.ano }}</td>
         </dl>
-        <a href="" ng-click="deletaFilme(filmeSelecionado)">Deletar o filme {{ filmeSelecionado.titulo }}</a>
+        <ul>
+          <li>
+            <a href="#" ng-click="deletaFilme(filmeSelecionado)">Deletar o filme {{ filmeSelecionado.titulo }}</a>
+          </li>
+          <li>
+            <a href="#" ng-click="editaFilme(filmeSelecionado)">Alterar o filme {{ filmeSelecionado.titulo }}</a>
+          </li>
+        </ul>
       </div>
   </ul>
 
-  <form ng-submit="adicionaFilme()">
+  <form ng-submit="enviaFilme()">
     Título: <input ng-model="filme.titulo">
     Diretor: <input ng-model="filme.diretor">
     Ano: <input ng-model="filme.ano">
