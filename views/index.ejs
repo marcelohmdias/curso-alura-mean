@@ -8,7 +8,16 @@
 <body ng-controller="FilmesController">
   <h1>Bem vindo ao treinamento de MEAN Stack do Alura!</h1>
 
-  <p>{{ filme }}</p>
+  <ul>
+    <li ng-repeat="filme in filmes">{{ filme.titulo }}</li>
+  </ul>
+
+  <form ng-submit="adicionaFilme()">
+    Título: <input ng-model="filme.titulo">
+    Diretor: <input ng-model="filme.diretor">
+    Ano: <input ng-model="filme.ano">
+    <button type="submit">Enviar</button>
+  </form>
 
   <script src="js/angular.min.js"></script>
   <script src="js/controller/FilmesController.js"></script>
