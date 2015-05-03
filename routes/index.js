@@ -18,9 +18,15 @@ exports.grava = function (req, res) {
 
     filme.save(function (error, filme) {
       if (error) {
-        console.log(filme);
+        console.log(error);
       }
-      console.log(filme);
-      res.send('Filme ' + filme.titulo  + ' recebido no servidor.');
+      res.send(filme);
     });
+};
+
+exports.deleta = function (req, res) {
+  var id = req.params.id;
+  Filme.findByIdAndRemove(id, function (error, filme) {
+    res.send('Filme' + filme.titulo + ' removido com sucesso.');
+  });
 };

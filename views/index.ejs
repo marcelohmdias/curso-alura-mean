@@ -9,7 +9,22 @@
   <h1>Bem vindo ao treinamento de MEAN Stack do Alura!</h1>
 
   <ul>
-    <li ng-repeat="filme in filmes">{{ filme.titulo }}</li>
+    <li ng-repeat="filme in filmes">
+      <a href="#" ng-click="mostraFilme(filme)">
+        {{ filme.titulo }}
+      </a>
+    </li>
+    <div ng-if="filmeSelecionado">
+      <dl>
+        <dt>Título:</dt>
+          <td>{{ filmeSelecionado.titulo }}</td>
+          <dt>Diretor:</dt>
+          <td>{{ filmeSelecionado.diretor }}</td>
+          <dt>Ano:</dt>
+          <td>{{ filmeSelecionado.ano }}</td>
+        </dl>
+        <a href="" ng-click="deletaFilme(filmeSelecionado)">Deletar o filme {{ filmeSelecionado.titulo }}</a>
+      </div>
   </ul>
 
   <form ng-submit="adicionaFilme()">

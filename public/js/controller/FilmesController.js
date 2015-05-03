@@ -11,10 +11,24 @@ function FilmesController($http, $scope) {
   }
 
   $scope.filme = new Filme();
+
   $scope.adicionaFilme = function () {
     $http.post('/grava', $scope.filme)
       .success(function (retorno) {
-        console.log(retorno);
+        $scope.filmes.push(retorno);
+        $scope.filme = new Filme();
+    });
+  };
+
+  $scope.mostraFilme = function (filme) {
+    $scope.filmeSelecionado = filme;
+  };
+
+  $scope.deletaFilme = function (filme) {
+    $http.delete('/filme/' + filme._id).success(function (retorno) {
+      $scope.filmeSelecionado = null;
+      var index = $scope.filmes.indexOf(filme);
+      $scope.filmes.splice(index, 1);
     });
   };
 }
